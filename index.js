@@ -18,8 +18,8 @@ WebpackWriter.prototype.updateCache = function(srcDir, destDir) {
 	return new RSVP.Promise(function(resolve, reject) {
 		compiler.run(function(err, stats) {
 			var jsonStats = stats.toJson();
-			if (jsonStats.errors.length > 0) console.log(jsonStats.errors);
-			if (jsonStats.warnings.length > 0) console.log(jsonStats.warnings);
+			if (jsonStats.errors.length > 0) jsonStats.errors.forEach(console.error);
+			if (jsonStats.warnings.length > 0) jsonStats.warnings.forEach(console.warn);
 			if (err || jsonStats.errors.length > 0) {
 				reject(err);
 			} else {
