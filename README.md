@@ -20,7 +20,15 @@ var js_bundler = webpackify(inl, {
 	entry: './main',
 	output: {filename: 'app.js'},
 	externals: [{'react': 'React', 'jquery': '$'}],
-	devtool: 'source-map'
+	devtool: 'source-map',
+	module: {
+		preLoaders: [
+			{
+				test: /\.js$/,
+				loader: "source-map-loader"
+			}
+		]
+	}
 });
 ```
 
