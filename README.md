@@ -1,4 +1,4 @@
-# broccoli-webpack
+# broccoli-webpack [![npm version](https://img.shields.io/npm/v/broccoli-webpack.svg?style=flat)](https://www.npmjs.org/package/broccoli-webpack) [![npm downloads](https://img.shields.io/npm/dm/broccoli-webpack.svg?style=flat)](https://www.npmjs.org/package/broccoli-webpack) [![WTFPL](https://img.shields.io/badge/license-WTFPL-brightgreen.svg?style=flat)](https://www.tldrlegal.com/l/wtfpl)
 
 A [Broccoli] plugin for [webpack].
 

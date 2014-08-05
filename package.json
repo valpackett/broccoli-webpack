@@ -1,7 +1,7 @@
 {
 	"name": "broccoli-webpack",
 	"description": "A Broccoli plugin for webpack",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"author": "Greg V <floatboth@me.com>",
 	"engines": {
 		"node": "*"
