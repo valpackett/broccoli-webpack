@@ -1,27 +1,35 @@
 {
-	"name": "broccoli-webpack",
-	"description": "A Broccoli plugin for webpack",
-	"version": "0.1.2",
-	"author": "Greg V <greg@unrelenting.technology>",
-	"engines": {
-		"node": "*"
-	},
-	"main": "index",
-	"keywords": [
-		"broccoli-plugin",
-		"webpack"
-	],
-	"dependencies": {
-		"broccoli-caching-writer": "^0.3.1",
-		"rsvp": "^3.0.0",
-		"webpack": "^1.3.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/myfreeweb/broccoli-webpack.git"
-	},
-	"license": "Unlicense",
-	"bugs": {
-		"url": "https://github.com/myfreeweb/broccoli-webpack/issues"
-	}
+  "name": "broccoli-webpack",
+  "description": "A Broccoli plugin for webpack",
+  "version": "0.1.3",
+  "author": "Greg V <greg@unrelenting.technology>",
+  "engines": {
+    "node": "*"
+  },
+  "main": "index.js",
+  "keywords": [
+    "broccoli-plugin",
+    "webpack"
+  ],
+  "dependencies": {
+    "broccoli-caching-writer": "^1.0.0",
+    "rsvp": "^3.0.20",
+    "webpack": "^1.10.0"
+  },
+  "scripts": {
+    "test": "tape 'test/*.js' | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/myfreeweb/broccoli-webpack.git"
+  },
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/myfreeweb/broccoli-webpack/issues"
+  },
+  "devDependencies": {
+    "broccoli": "^0.16.3",
+    "tap-spec": "^4.0.2",
+    "tape": "^4.0.1"
+  }
 }

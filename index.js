@@ -1,32 +1,34 @@
-'use strict';
-var RSVP = require('rsvp');
-var webpack = require('webpack');
-var CachingWriter = require('broccoli-caching-writer');
+'use strict'
 
-function WebpackWriter(inputTree, options) {
-	if (!(this instanceof WebpackWriter)) return new WebpackWriter(inputTree, options);
-	this.inputTree = inputTree;
-	this.options = options;
-}
-WebpackWriter.prototype = Object.create(CachingWriter.prototype);
-WebpackWriter.prototype.constructor = WebpackWriter;
-WebpackWriter.prototype.updateCache = function(srcDir, destDir) {
-	this.options['context'] = srcDir;
-	this.options['output'] = this.options['output'] || {};
-	this.options['output']['path'] = destDir;
-	var compiler = webpack(this.options);
-	return new RSVP.Promise(function(resolve, reject) {
-		compiler.run(function(err, stats) {
-			var jsonStats = stats.toJson();
-			if (jsonStats.errors.length > 0) jsonStats.errors.forEach(console.error);
-			if (jsonStats.warnings.length > 0) jsonStats.warnings.forEach(console.warn);
-			if (err || jsonStats.errors.length > 0) {
-				reject(err);
-			} else {
-				resolve(destDir);
-			}
-		});
-	});
-}
+var RSVP = require('rsvp')
+var path = require('path')
+var webpack = require('webpack')
+var CachingWriter = require('broccoli-caching-writer')
 
-module.exports = WebpackWriter;
+var WebpackWriter = CachingWriter.extend({
+	enforceSingleInputTree: true,
+	init: function(inputTrees, options) {
+		this._super(inputTrees, {})
+		this.options = options || {}
+	},
+	updateCache: function(srcDir, destDir) {
+		this.options.context = path.resolve(srcDir)
+		this.options.output = this.options.output || {}
+		this.options.output.path = destDir
+		var compiler = webpack(this.options)
+		return new RSVP.Promise(function(resolve, reject) {
+			compiler.run(function(err, stats) {
+				var jsonStats = stats.toJson()
+				if (jsonStats.errors.length > 0) jsonStats.errors.forEach(console.error)
+				if (jsonStats.warnings.length > 0) jsonStats.warnings.forEach(console.warn)
+				if (err || jsonStats.errors.length > 0) {
+					reject(err)
+				} else {
+					resolve(destDir)
+				}
+			})
+		})
+	}
+})
+
+module.exports = function(t, o) { return new WebpackWriter(t, o) }
