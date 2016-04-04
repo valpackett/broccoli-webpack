@@ -14,9 +14,9 @@ $ npm install --save-dev broccoli-webpack
 ## Usage
 
 ```js
-var webpackify = require('broccoli-webpack');
-var js_source = 'src';
-var js_bundler = webpackify(inl, {
+var WebpackWriter = require('broccoli-webpack')
+var js_source = 'src'
+var js_bundler = new WebpackWriter([js_source], {
 	entry: './main',
 	output: {filename: 'app.js'},
 	externals: [{'react': 'React', 'jquery': '$'}],
@@ -29,7 +29,7 @@ var js_bundler = webpackify(inl, {
 			}
 		]
 	}
-});
+})
 ```
 
 Basically, just pass a tree and a normal [webpack config].
@@ -41,9 +41,8 @@ For everything else, you're on your own :-)
 ## Contributing
 
 Please feel free to submit pull requests!
-Bugfixes and simple non-breaking improvements will be accepted without any questions :-)
 
-By participating in this project you agree to follow the [Contributor Code of Conduct](http://contributor-covenant.org/version/1/2/0/).
+By participating in this project you agree to follow the [Contributor Code of Conduct](http://contributor-covenant.org/version/1/4/).
 
 ## License
 
