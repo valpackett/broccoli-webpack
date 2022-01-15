@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Greg V <greg@unrelenting.technology>",
   "engines": {
-    "node": "*"
+    "node": ">=0.12"
   },
   "main": "index.js",
   "keywords": [
