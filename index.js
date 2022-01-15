@@ -1,6 +1,5 @@
 'use strict'
 
-var RSVP = require('rsvp')
 var path = require('path')
 var webpack = require('webpack')
 var CachingWriter = require('broccoli-caching-writer')
@@ -17,12 +16,13 @@ function WebpackWriter (inputNodes, options) {
 }
 
 WebpackWriter.prototype.build = function () {
-	return RSVP.all(this.inputPaths.map(function (srcDir) {
+	return Promise.all(this.inputPaths.map(function (srcDir) {
 		this.options.context = path.resolve(srcDir)
 		this.options.output = this.options.output || {}
 		this.options.output.path = this.outputPath
 		var compiler = webpack(this.options)
-		return new RSVP.Promise(function (resolve, reject) {
+
+		return new Promise(function (resolve, reject) {
 			compiler.run(function (err, stats) {
 				var jsonStats = stats.toJson()
 				if (jsonStats.errors.length > 0) jsonStats.errors.forEach(console.error)
