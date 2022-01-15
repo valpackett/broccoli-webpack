@@ -9,6 +9,7 @@ var WebpackWriter = require('../')
 test('broccoli-webpack', function (t) {
 	t.plan(1)
 	var builder = new broccoli.Builder(new WebpackWriter(['test/tree'], {
+		mode: 'development',
 		entry: './one',
 		output: {filename: 'bundle.js'}
 	}))
